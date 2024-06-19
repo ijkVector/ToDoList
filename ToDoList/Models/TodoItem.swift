@@ -89,5 +89,36 @@ extension TodoItem {
             modifiedDate: modifiedDate
         )
     }
+    
+    //MARK: - From TodoItme to Json
+    var json: Any { jsonString }
+    
+    var jsonString: String {
+        let mirror = Mirror(reflecting: self)
+        let jsonAsArray: [String] = mirror.children.compactMap {
+            guard let key = $0.label,
+                  let value = getCorrectValue(by: $0.value)
+            else { return nil }
+            return "\"\(key)\":\(value)"
+        }
+        return "{\(jsonAsArray.joined(separator: ","))}"
+    }
 }
 
+//MARK: - Private Section
+private extension TodoItem {
+    func getCorrectValue(by value: Any) -> Any? {
+        switch value {
+        case is String:
+            return "\"\(value)\""
+        case let date as Date:
+            return date.timeIntervalSince1970
+        case let isFinished as Bool:
+            return isFinished
+        case let importance as Importance:
+            return importance == Importance.routine ? nil : "\"\(importance)\""
+        default:
+            return nil
+        }
+    }
+}
