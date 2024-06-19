@@ -105,8 +105,55 @@ extension TodoItem {
     }
 }
 
+//MARK: - Parse CSV
+extension TodoItem {
+    static func parseCSV(csv: Any) -> TodoItem? {
+        guard let csvString = csv as? String else { return nil }
+        let csvArray = csvString.components(separatedBy: ",")
+        
+        guard csvArray.count == 7 else { return nil }
+        let parsedCSV: [String: Any] = Dictionary(uniqueKeysWithValues: zip(fields, csvArray))
+        
+        guard let id = parsedCSV["id"] as? String,
+              let text = parsedCSV["text"] as? String,
+              let isFinished = parsedCSV["isFinished"] as? Bool,
+              let сreationTimeInterval = parsedCSV["сreationDate"] as? TimeInterval
+        else { return nil }
+        
+        let сreationDate = Date(timeIntervalSince1970: сreationTimeInterval)
+        var importance: Importance = .routine
+        var deadline: Date?
+        var modifiedDate: Date?
+        
+        if let rawValue = parsedCSV["importance"] as? String, let value = Importance(rawValue: rawValue) {
+            importance = value
+        }
+        
+        if let deadlineTimeInterval = parsedCSV["deadline"] as? TimeInterval {
+            deadline = Date(timeIntervalSince1970: deadlineTimeInterval)
+        }
+        
+        if let modifiedDateTimeInterval = parsedCSV["modifiedDate"] as? TimeInterval {
+            modifiedDate = Date(timeIntervalSince1970: modifiedDateTimeInterval)
+        }
+        
+        return TodoItem(
+            id: id,
+            text: text,
+            importance: importance,
+            deadline: deadline,
+            isFinished: isFinished,
+            сreationDate: сreationDate,
+            modifiedDate: modifiedDate
+        )
+    }
+}
+
 //MARK: - Private Section
 private extension TodoItem {
+    
+    static let fields = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
+    
     func getCorrectValue(by value: Any) -> Any? {
         switch value {
         case is String:
