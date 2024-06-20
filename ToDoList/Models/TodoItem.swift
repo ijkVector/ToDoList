@@ -97,7 +97,7 @@ extension TodoItem {
         let mirror = Mirror(reflecting: self)
         let jsonAsArray: [String] = mirror.children.compactMap {
             guard let key = $0.label,
-                  let value = getCorrectValue(by: $0.value)
+                  let value = getJsonValue(by: $0.value)
             else { return nil }
             return "\"\(key)\":\(value)"
         }
@@ -109,9 +109,9 @@ extension TodoItem {
 extension TodoItem {
     static func parseCSV(csv: Any) -> TodoItem? {
         guard let csvString = csv as? String else { return nil }
-        let csvArray = csvString.components(separatedBy: ",")
+        let csvArray: [Any] = csvString.components(separatedBy: ",")
         
-        guard csvArray.count == 7 else { return nil }
+        guard csvArray.count == 7 else { return nil } //magic constants
         let parsedCSV: [String: Any] = Dictionary(uniqueKeysWithValues: zip(fields, csvArray))
         
         guard let id = parsedCSV["id"] as? String,
@@ -154,7 +154,7 @@ private extension TodoItem {
     
     static let fields = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
     
-    func getCorrectValue(by value: Any) -> Any? {
+    func getJsonValue(by value: Any) -> Any? {
         switch value {
         case is String:
             return "\"\(value)\""
