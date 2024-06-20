@@ -53,14 +53,17 @@ struct TodoItem: Codable {
 extension TodoItem {
     //MARK: - From Json to TodoItem
     static func parse(json: Any) -> TodoItem? {
-        guard let jsonAsString = json as? String else { return nil }
+        guard let jsonAsString = json as? String else { return nil } //Можно ли сократить ?
         let jsonData = Data(jsonAsString.utf8)
         
         guard let jsonAsDictionary = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
               let id = jsonAsDictionary["id"] as? String,
               let text = jsonAsDictionary["text"] as? String,
               let isFinished = jsonAsDictionary["isFinished"] as? Bool,
-              let сreationTimeInterval = jsonAsDictionary["сreationDate"] as? TimeInterval else { return nil }
+              let сreationTimeInterval = jsonAsDictionary["сreationDate"] as? TimeInterval
+        else {
+            return nil
+        }
         
         let сreationDate = Date(timeIntervalSince1970: сreationTimeInterval)
         var importance: Importance = .routine
@@ -97,7 +100,7 @@ extension TodoItem {
         let mirror = Mirror(reflecting: self)
         let jsonAsArray: [String] = mirror.children.compactMap {
             guard let key = $0.label,
-                  let value = getJsonValue(by: $0.value)
+                  let value = getCorrectPairJsonValue(by: $0.value)
             else { return nil }
             return "\"\(key)\":\(value)"
         }
@@ -107,33 +110,35 @@ extension TodoItem {
 
 //MARK: - Parse CSV
 extension TodoItem {
-    static func parseCSV(csv: Any) -> TodoItem? {
+    static func parse(csv: Any) -> TodoItem? {
         guard let csvString = csv as? String else { return nil }
-        let csvArray: [Any] = csvString.components(separatedBy: ",")
+        let csvArray = csvString.components(separatedBy: ",")
         
-        guard csvArray.count == 7 else { return nil } //magic constants
-        let parsedCSV: [String: Any] = Dictionary(uniqueKeysWithValues: zip(fields, csvArray))
+        guard csvArray.count == Constants.numOfItemFields else { return nil } 
+        let parsedCSV = Dictionary(uniqueKeysWithValues: zip(Constants.fieldsOfItem, csvArray))
         
-        guard let id = parsedCSV["id"] as? String,
-              let text = parsedCSV["text"] as? String,
-              let isFinished = parsedCSV["isFinished"] as? Bool,
-              let сreationTimeInterval = parsedCSV["сreationDate"] as? TimeInterval
-        else { return nil }
+        guard let id = parsedCSV["id"],
+              let text = parsedCSV["text"],
+              let isFinished = Bool(parsedCSV["isFinished", default: ""]),
+              let сreationTimeInterval = TimeInterval(parsedCSV["сreationDate", default: ""])
+        else {
+            return nil
+        }
         
         let сreationDate = Date(timeIntervalSince1970: сreationTimeInterval)
         var importance: Importance = .routine
         var deadline: Date?
         var modifiedDate: Date?
         
-        if let rawValue = parsedCSV["importance"] as? String, let value = Importance(rawValue: rawValue) {
+        if let rawValue = parsedCSV["importance"], let value = Importance(rawValue: rawValue) {
             importance = value
         }
         
-        if let deadlineTimeInterval = parsedCSV["deadline"] as? TimeInterval {
+        if let deadlineTimeInterval = TimeInterval(parsedCSV["deadline", default: ""]) {
             deadline = Date(timeIntervalSince1970: deadlineTimeInterval)
         }
         
-        if let modifiedDateTimeInterval = parsedCSV["modifiedDate"] as? TimeInterval {
+        if let modifiedDateTimeInterval = TimeInterval(parsedCSV["modifiedDate", default: ""]) {
             modifiedDate = Date(timeIntervalSince1970: modifiedDateTimeInterval)
         }
         
@@ -152,9 +157,12 @@ extension TodoItem {
 //MARK: - Private Section
 private extension TodoItem {
     
-    static let fields = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
+    struct Constants {
+        static let fieldsOfItem = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
+        static let numOfItemFields = 7
+    }
     
-    func getJsonValue(by value: Any) -> Any? {
+    func getCorrectPairJsonValue(by value: Any) -> Any? {
         switch value {
         case is String:
             return "\"\(value)\""
