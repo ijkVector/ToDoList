@@ -42,7 +42,7 @@ final class TodoItemTests: XCTestCase {
         csv = "todoItem1,task1,unimportant,101,true,100,nil"
     }
     
-    func testConvertToJson() throws {
+    func testConvertToJson() throws { //Как лучше тестить ?
         let todoItemAsJson = todoItem.json
         guard let jsonStirngItem = todoItemAsJson as? String,
               let jsonString = json as? String
@@ -77,6 +77,7 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
         XCTAssertEqual(todoItem.modifiedDate, nil)
         
+        
         //MARK: - Parse JSON without deadline, modifiedDate
         json = """
         {
@@ -100,6 +101,7 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.isFinished, true)
         XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
         XCTAssertEqual(todoItem.modifiedDate, nil)
+        
         
         //MARK: - Parse JSON without modifiedDate
         json = """
@@ -126,6 +128,7 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
         XCTAssertEqual(todoItem.modifiedDate, nil)
         
+        
         //MARK: - Test Parse JSON full
         json = """
         {
@@ -141,6 +144,75 @@ final class TodoItemTests: XCTestCase {
         
         guard let todoItem = TodoItem.parse(json: json!) else {
             XCTFail("Failed to parse json into object")
+            return
+        }
+        
+        XCTAssertEqual(todoItem.id, "todoItem1")
+        XCTAssertEqual(todoItem.text, "task1")
+        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
+        XCTAssertEqual(todoItem.isFinished, true)
+        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.modifiedDate!, Date(timeIntervalSince1970: 101))
+    }
+    
+    func testParseCSV() throws {
+        //MARK: - Parse CSV without importance, deadline, modifiedDate
+        csv = "todoItem1,task1,,,true,100,"
+        
+        guard let todoItem = TodoItem.parse(csv: csv!) else {
+            XCTFail("Failed to parse csv into object")
+            return
+        }
+        
+        XCTAssertEqual(todoItem.id, "todoItem1")
+        XCTAssertEqual(todoItem.text, "task1")
+        XCTAssertEqual(todoItem.importance, .routine)
+        XCTAssertEqual(todoItem.deadline, nil)
+        XCTAssertEqual(todoItem.isFinished, true)
+        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.modifiedDate, nil)
+        
+        
+        //MARK: - Parse CSV without deadline, modifiedDate
+        csv = "todoItem1,task1,important,,true,100,"
+        
+        guard let todoItem = TodoItem.parse(csv: csv!) else {
+            XCTFail("Failed to parse csv into object")
+            return
+        }
+        
+        XCTAssertEqual(todoItem.id, "todoItem1")
+        XCTAssertEqual(todoItem.text, "task1")
+        XCTAssertEqual(todoItem.importance, .important)
+        XCTAssertEqual(todoItem.deadline, nil)
+        XCTAssertEqual(todoItem.isFinished, true)
+        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.modifiedDate, nil)
+        
+        
+        //MARK: - Parse CSV without modifiedDate
+        csv = "todoItem1,task1,unimportant,101,true,100,"
+        
+        guard let todoItem = TodoItem.parse(csv: csv!) else {
+            XCTFail("Failed to parse csv into object")
+            return
+        }
+        
+        XCTAssertEqual(todoItem.id, "todoItem1")
+        XCTAssertEqual(todoItem.text, "task1")
+        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 101))
+        XCTAssertEqual(todoItem.isFinished, true)
+        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.modifiedDate, nil)
+        
+        
+        //MARK: - Test Parse CSV full
+        csv = "todoItem1,task1,unimportant,102,true,100,101"
+        
+        guard let todoItem = TodoItem.parse(csv: csv!) else {
+            XCTFail("Failed to parse csv into object")
             return
         }
         
