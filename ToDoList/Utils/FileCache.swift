@@ -43,7 +43,6 @@ final class FileCache: FileCacheProtocol {
         switch format {
         case .json:
             let jsonArray = todoItems.map { $0.json }
-//            print(jsonArray)
             guard JSONSerialization.isValidJSONObject(jsonArray) else {
                 throw FileCacheError.invalidJSON
             }
@@ -67,7 +66,6 @@ final class FileCache: FileCacheProtocol {
         switch format {
         case .json:
             let data = try Data(contentsOf: filePath)
-//            print(try String(contentsOf: filePath))
             guard let jsonArray = try? JSONSerialization.jsonObject(with: data) as? [Any] else {
                 throw FileCacheError.invalidJSON
             }
