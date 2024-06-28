@@ -142,7 +142,7 @@ extension TodoItem: CSVConvertible {
 //MARK: - Private Section
 private extension TodoItem {
     
-    struct Constants {
+    enum Constants {
         static let fieldsOfItem = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
         static let numOfItemFields = 7
     }
