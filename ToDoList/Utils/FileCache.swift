@@ -25,7 +25,8 @@ final class FileCache: FileCacheProtocol {
     private(set) var todoItems: [TodoItem] = []
     
     func add(item: TodoItem) throws {
-        guard todoItems.first(where: { $0.id == item.id }) == nil else { throw FileCacheError.itemAlreadyExists }
+        guard todoItems.first(where: { $0.id == item.id }) == nil else { throw FileCacheError.itemAlreadyExists
+        }
         
         todoItems.append(item)
     }

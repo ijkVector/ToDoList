@@ -1,0 +1,20 @@
+//
+//  TodoItemsViewHeader.swift
+//  ToDoList
+//
+//  Created by Иван Дроботов on 29.06.2024.
+//
+
+import SwiftUI
+
+struct TodoItemsViewHeader: View {
+    
+    var doneCounter: Int
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    TodoItemsViewHeader(doneCounter: 0)
+}

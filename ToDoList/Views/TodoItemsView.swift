@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct TodoItemsView: View {
+    @StateObject var viewModel = TodoItemsViewModel()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(.iconArrowDown)
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+                .foregroundColor(Color.customRed)
         }
         .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    TodoItemsView()
 }

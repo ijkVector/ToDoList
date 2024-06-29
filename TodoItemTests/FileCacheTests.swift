@@ -31,25 +31,25 @@ final class FileCacheTests: XCTestCase {
             text: "task1",
             importance: .unimportant,
             deadline: Date(timeIntervalSince1970: 101),
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 99),
-            modifiedDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 99),
+            changedAt: Date(timeIntervalSince1970: 100)
         )
         
         todoItem1 = TodoItem(
             text: "task1",
             importance: .routine,
             deadline: Date(timeIntervalSince1970: 101),
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 99),
-            modifiedDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 99),
+            changedAt: Date(timeIntervalSince1970: 100)
         )
         
         todoItem2 =  TodoItem(
             text: "task1",
             importance: .routine,
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 100)
         )
     }
     
