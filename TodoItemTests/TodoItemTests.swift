@@ -21,9 +21,9 @@ final class TodoItemTests: XCTestCase {
             id: "todoItem1",
             text: "task1",
             importance: .routine,
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 100),
-            modifiedDate: Date(timeIntervalSince1970: 101)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 100),
+            changedAt: Date(timeIntervalSince1970: 101)
         )
         
         json = """
@@ -76,9 +76,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .routine)
         XCTAssertEqual(todoItem.deadline, nil)
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate, nil)
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt, nil)
         
         //MARK: - Parse JSON without deadline, modifiedDate
         json = """
@@ -98,9 +98,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .important)
         XCTAssertEqual(todoItem.deadline, nil)
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate, nil)
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt, nil)
         
         //MARK: - Parse JSON without modifiedDate
         json = """
@@ -121,9 +121,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .unimportant)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 101))
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate, nil)
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt, nil)
         
         //MARK: - Test Parse JSON full
         json = """
@@ -145,9 +145,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .unimportant)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate!, Date(timeIntervalSince1970: 101))
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt!, Date(timeIntervalSince1970: 101))
     }
     
     //MARK: - Test Parse CSV
@@ -162,9 +162,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .routine)
         XCTAssertEqual(todoItem.deadline, nil)
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate, nil)
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt, nil)
         
         
         //MARK: - Parse CSV without deadline, modifiedDate
@@ -177,9 +177,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .important)
         XCTAssertEqual(todoItem.deadline, nil)
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate, nil)
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt, nil)
         
         
         //MARK: - Parse CSV without modifiedDate
@@ -192,9 +192,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .unimportant)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 101))
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate, nil)
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt, nil)
         
         
         //MARK: - Test Parse CSV full
@@ -207,9 +207,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "task1")
         XCTAssertEqual(todoItem.importance, .unimportant)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate!, Date(timeIntervalSince1970: 101))
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt!, Date(timeIntervalSince1970: 101))
         
         
         //MARK: - Test Parse CSV with commas inside quotes
@@ -222,9 +222,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "Hello, World,")
         XCTAssertEqual(todoItem.importance, .unimportant)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate!, Date(timeIntervalSince1970: 101))
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt!, Date(timeIntervalSince1970: 101))
         
         
         //MARK: - Test Parse with with another separator
@@ -237,9 +237,9 @@ final class TodoItemTests: XCTestCase {
         XCTAssertEqual(todoItem.text, "Hello; World,")
         XCTAssertEqual(todoItem.importance, .unimportant)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
-        XCTAssertEqual(todoItem.isFinished, true)
-        XCTAssertEqual(todoItem.сreationDate, Date(timeIntervalSince1970: 100))
-        XCTAssertEqual(todoItem.modifiedDate!, Date(timeIntervalSince1970: 101))
+        XCTAssertEqual(todoItem.isDone, true)
+        XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
+        XCTAssertEqual(todoItem.changedAt!, Date(timeIntervalSince1970: 101))
     }
     
     //MARK: - Test Convert to CSV
@@ -249,8 +249,8 @@ final class TodoItemTests: XCTestCase {
             id: "todoItem1",
             text: "task1",
             importance: .routine,
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 100)
         )
         XCTAssertEqual(todoItem.csv(), "todoItem1,\"task1\",,,true,100.0,")
         
@@ -259,8 +259,8 @@ final class TodoItemTests: XCTestCase {
             id: "todoItem1",
             text: "task1",
             importance: .important,
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 100)
         )
         XCTAssertEqual(todoItem.csv(), "todoItem1,\"task1\",important,,true,100.0,")
         
@@ -270,8 +270,8 @@ final class TodoItemTests: XCTestCase {
             text: "task1",
             importance: .important,
             deadline: Date(timeIntervalSince1970: 101),
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 100)
         )
         XCTAssertEqual(todoItem.csv(), "todoItem1,\"task1\",important,101.0,true,100.0,")
         
@@ -281,9 +281,9 @@ final class TodoItemTests: XCTestCase {
             text: "task1",
             importance: .important,
             deadline: Date(timeIntervalSince1970: 101),
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 99),
-            modifiedDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 99),
+            changedAt: Date(timeIntervalSince1970: 100)
         )
         XCTAssertEqual(todoItem.csv(), "todoItem1,\"task1\",important,101.0,true,99.0,100.0")
         
@@ -293,9 +293,9 @@ final class TodoItemTests: XCTestCase {
             text: "task1",
             importance: .important,
             deadline: Date(timeIntervalSince1970: 101),
-            isFinished: true,
-            сreationDate: Date(timeIntervalSince1970: 99),
-            modifiedDate: Date(timeIntervalSince1970: 100)
+            isDone: true,
+            createdAt: Date(timeIntervalSince1970: 99),
+            changedAt: Date(timeIntervalSince1970: 100)
         )
         XCTAssertEqual(todoItem.csv(with: ";"), "todoItem1;\"task1\";important;101.0;true;99.0;100.0")
     }
