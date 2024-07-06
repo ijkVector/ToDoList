@@ -17,7 +17,11 @@ struct AppState: ReduxState {
 }
 
 struct ItemsState: ReduxState {
-    var items: [TodoItem] = []
+    var items: [TodoItem] = [
+        TodoItem(text: "Задача1", importance: .important),
+        TodoItem(text: "Задача2", importance: .routine),
+        TodoItem(text: "Задача3", importance: .unimportant),
+    ]
 }
 
 struct DetailViewColorState: ReduxState {
