@@ -8,7 +8,14 @@
 import Foundation
 
 extension Date {
-    var nextDay: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+    static var nextDay: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: .now)!
+    }
+    
+    var deadlineAsString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM yyyy"
+        dateFormatter.locale = Locale(identifier: "ru_Ru")
+        return dateFormatter.string(from: self)
     }
 }
