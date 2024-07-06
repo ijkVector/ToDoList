@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct ToDoListApp: App {
+    let store = Store(reducer: appReducer, state: AppState())
     var body: some Scene {
         WindowGroup {
-            TodoItemsView()
+            TodoItemsView().environmentObject(store)
         }
     }
 }
