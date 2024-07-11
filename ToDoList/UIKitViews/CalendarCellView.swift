@@ -17,7 +17,8 @@ final class CalendarCellView: UICollectionViewCell {
     
     private func style(text: String) {
         layer.cornerRadius = 10
-        layer.backgroundColor = UIColor.systemGray.cgColor
+//        layer.backgroundColor = UIColor.systemGray.cgColor
+        layer.borderColor = UIColor.customGray.cgColor
         label.textAlignment = .center
         label.numberOfLines = 3
         label.text = text

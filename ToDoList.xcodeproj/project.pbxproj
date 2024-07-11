@@ -15,7 +15,7 @@
 		6B15A2FC2C38F4580002206A /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B15A2FB2C38F4580002206A /* CalendarCellView.swift */; };
 		6B15A2FE2C38F80E0002206A /* ItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B15A2FD2C38F80E0002206A /* ItemCellView.swift */; };
 		6B15A3002C38FB910002206A /* CalendarViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B15A2FF2C38FB910002206A /* CalendarViewRepresentable.swift */; };
-		6B15A3022C38FD230002206A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B15A3012C38FD230002206A /* CalendarViewController.swift */; };
+		6B15A3022C38FD230002206A /* MainCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B15A3012C38FD230002206A /* MainCalendarViewController.swift */; };
 		6B15A3042C38FD960002206A /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B15A3032C38FD960002206A /* CalendarModel.swift */; };
 		6B62833B2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62833A2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift */; };
 		6B62833D2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62833C2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift */; };
@@ -36,6 +36,7 @@
 		6BA1E9DC2C25E85F0020FD3C /* CSVConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA1E9DB2C25E85F0020FD3C /* CSVConvertible.swift */; };
 		6BA1E9DE2C25F6400020FD3C /* FileCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA1E9DD2C25F6400020FD3C /* FileCacheProtocol.swift */; };
 		6BA1E9ED2C26185C0020FD3C /* FileCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA1E9EC2C26185C0020FD3C /* FileCacheTests.swift */; };
+		6BDC61652C3AF7AE005D8714 /* ContainerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDC61642C3AF7AE005D8714 /* ContainerCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +58,7 @@
 		6B15A2FB2C38F4580002206A /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 		6B15A2FD2C38F80E0002206A /* ItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellView.swift; sourceTree = "<group>"; };
 		6B15A2FF2C38FB910002206A /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
-		6B15A3012C38FD230002206A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		6B15A3012C38FD230002206A /* MainCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarViewController.swift; sourceTree = "<group>"; };
 		6B15A3032C38FD960002206A /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		6B62833A2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+JSONConvertible.swift"; sourceTree = "<group>"; };
 		6B62833C2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CSVConvertible.swift"; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		6BA1E9DB2C25E85F0020FD3C /* CSVConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVConvertible.swift; sourceTree = "<group>"; };
 		6BA1E9DD2C25F6400020FD3C /* FileCacheProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheProtocol.swift; sourceTree = "<group>"; };
 		6BA1E9EC2C26185C0020FD3C /* FileCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheTests.swift; sourceTree = "<group>"; };
+		6BDC61642C3AF7AE005D8714 /* ContainerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +118,10 @@
 			children = (
 				6B15A2FB2C38F4580002206A /* CalendarCellView.swift */,
 				6B15A2FD2C38F80E0002206A /* ItemCellView.swift */,
-				6B15A2FF2C38FB910002206A /* CalendarViewRepresentable.swift */,
-				6B15A3012C38FD230002206A /* CalendarViewController.swift */,
+				6B15A3012C38FD230002206A /* MainCalendarViewController.swift */,
 				6B15A3032C38FD960002206A /* CalendarModel.swift */,
+				6BDC61642C3AF7AE005D8714 /* ContainerCollectionView.swift */,
+				6B15A2FF2C38FB910002206A /* CalendarViewRepresentable.swift */,
 			);
 			path = UIKitViews;
 			sourceTree = "<group>";
@@ -341,7 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B15A3022C38FD230002206A /* CalendarViewController.swift in Sources */,
+				6B15A3022C38FD230002206A /* MainCalendarViewController.swift in Sources */,
 				6B62833B2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift in Sources */,
 				6B7969D22C374DBA00A624D1 /* ItemReducer.swift in Sources */,
 				6B62833D2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift in Sources */,
@@ -363,6 +366,7 @@
 				6B9D61142C2FBE7D00C9F32B /* Date+Extentions.swift in Sources */,
 				6B15A2FC2C38F4580002206A /* CalendarCellView.swift in Sources */,
 				6B15A3002C38FB910002206A /* CalendarViewRepresentable.swift in Sources */,
+				6BDC61652C3AF7AE005D8714 /* ContainerCollectionView.swift in Sources */,
 				6BA1E9DA2C25E6320020FD3C /* JSONConvertible.swift in Sources */,
 				6B7969CB2C374A5D00A624D1 /* TodoItemsView.swift in Sources */,
 				6B15A2FE2C38F80E0002206A /* ItemCellView.swift in Sources */,

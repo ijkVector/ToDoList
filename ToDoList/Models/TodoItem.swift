@@ -44,4 +44,17 @@ struct TodoItem: Equatable {
         self.changedAt = changedAt
         self.hexColor = hexColor
     }
+    
+    init(todoItem: TodoItem) {
+        self.init(
+            id: todoItem.id,
+            text: todoItem.text,
+            importance: todoItem.importance,
+            deadline: todoItem.deadline,
+            isDone: !todoItem.isDone,
+            createdAt: todoItem.createdAt,
+            changedAt: todoItem.changedAt,
+            hexColor: todoItem.hexColor
+        )
+    }
 }

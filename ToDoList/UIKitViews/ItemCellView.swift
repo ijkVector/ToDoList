@@ -12,7 +12,13 @@ final class ItemCellView: UITableViewCell {
     private let label = UILabel()
     private let point = UIView()
     
-    private func style() {
+    func configure(text: String) {
+        style(text: text)
+        layout()
+    }
+    
+    private func style(text: String) {
+        label.text = text
         label.numberOfLines = 3
         point.layer.cornerRadius = 5
         point.layer.masksToBounds = true
@@ -31,7 +37,7 @@ final class ItemCellView: UITableViewCell {
             label.trailingAnchor.constraint(equalTo: point.leadingAnchor, constant: -8),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
-//            point.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
+            point.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 8),
             point.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             point.heightAnchor.constraint(equalToConstant: 8),
             point.widthAnchor.constraint(equalToConstant: 8),

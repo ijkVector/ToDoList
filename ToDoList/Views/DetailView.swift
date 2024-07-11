@@ -47,7 +47,25 @@ struct DetailView: View {
             ScrollView {
                 VStack {
                     textFieldView
-                    featuresView
+                    VStack(spacing: 0) {
+                        importanceView
+                        Divider()
+                        colorView
+                        if isColorAvailable {
+                            Divider()
+                            PaletteView(currentColor: $hexColor)
+                        }
+                        Divider()
+                        deadlineView
+                        if isCalendarAvailable && isDeadlineAvailable {
+                            DeadlineCalendarView(deadline: $deadline)
+                            Spacer()
+                        }
+                    }
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .foregroundStyle(Color.customWhite)
+                        )
                     
                     Button(action: {
                         prop.onItemRemove(TodoItem(text: text, importance: importance))
@@ -111,11 +129,11 @@ struct DetailView: View {
             }
             Divider()
             deadlineView
+            if isCalendarAvailable && isDeadlineAvailable {
+                DeadlineCalendarView(deadline: $deadline)
+                Spacer()
+            }
         }
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .foregroundStyle(Color.customWhite)
-        )
     }
     
     private var importanceView: some View {
@@ -146,15 +164,36 @@ struct DetailView: View {
             Toggle("", isOn:
                     $isColorAvailable.animation(.linear))
         }
-        .frame(height: 60)
+        .frame(height: 56)
         .background(Color.customWhite)
     }
     
     private var deadlineView: some View {
-        HStack {
-            VStack(spacing: 1) {
+//        HStack {
+//            VStack(spacing: 1) {
+//                Text("Сделать до")
+//                    .padding()
+//                if isDeadlineAvailable {
+//                    Button(deadline.deadlineAsString) {
+//                        withAnimation {
+//                            isCalendarAvailable.toggle()
+//                        }
+//                    }
+//                }
+//                
+//                if isCalendarAvailable {
+//                    DeadlineCalendarView(deadline: $deadline)
+//                }
+//            }
+//            
+//            Toggle("", isOn: $isDeadlineAvailable.animation(.linear))
+//        }
+//        .frame(height: 90)
+//        .background(Color.customWhite)
+        
+        Toggle(isOn: $isDeadlineAvailable.animation()) {
+            VStack(alignment: .leading, spacing: 10) {
                 Text("Сделать до")
-                    .padding()
                 if isDeadlineAvailable {
                     Button(deadline.deadlineAsString) {
                         withAnimation {
@@ -162,16 +201,10 @@ struct DetailView: View {
                         }
                     }
                 }
-                
-                if isCalendarAvailable {
-                    DeadlineCalendarView(deadline: $deadline)
-                }
             }
-            
-            Toggle("", isOn: $isDeadlineAvailable)
+            .padding()
         }
-        .frame(height: 90)
-        .background(Color.customWhite)
+        .frame(height: 56)
     }
 }
 
