@@ -19,6 +19,7 @@ struct TodoItemsView: View {
         //dispatch
         let onItemAdded: (TodoItem) -> Void
         let onItemRemove: (TodoItem) -> Void
+        let onItemDone: (TodoItem) -> Void
     }
     
     private func map(state: ItemsState) -> Props {
@@ -26,6 +27,8 @@ struct TodoItemsView: View {
             store.dispathc(action: AddItemAction(item: item))
         }, onItemRemove: { item in
             store.dispathc(action: RemoveItemAction(item: item))
+        }, onItemDone: { item in
+            store.dispathc(action: DoneItemAction(item: item))
         })
     }
     
@@ -33,56 +36,64 @@ struct TodoItemsView: View {
         let prop = map(state: store.state.itemsState)
         
         NavigationStack{
-            VStack {
-                List(prop.items, id: \.id) { item in
-                    Button {
-                        currentItem = item
-                    } label: {
-                        TodoItemCellView(todoItem: item, completeToogle: {})
-                    }
-                    .swipeActions(allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            if let currentItem {
-                                prop.onItemRemove(currentItem)
-                            }
-                        } label: {
-                            Image(systemName: "trash")
-                        }
-                        .tint(Color.customRed)
-                        
-                        Button(action: {
+            ZStack(alignment: .bottom) {
+                VStack {
+                    List(prop.items, id: \.id) { item in
+                        Button {
                             currentItem = item
-                        }, label: {
-                            Image(systemName: "info.circle.fill")
-                        })
-                        .tint(Color.customGray)
-                    }
-                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                        
-                        Button(action: {
+                        } label: {
+                            TodoItemCellView(todoItem: item, completeToogle: {})
+                        }
+                        .swipeActions(allowsFullSwipe: true) {
+                            Button(role: .destructive) {
+                                if let currentItem {
+                                    prop.onItemRemove(currentItem)
+                                }
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                            .tint(Color.customRed)
                             
-                        }, label: {
-                            Image(.iconPropOn)
-                        })
-                        .tint(Color.customGreen)
+                            Button(action: {
+                                
+                            }, label: {
+                                Image(systemName: "info.circle.fill")
+                            })
+                            .tint(Color.customGray)
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            
+                            Button(action: {
+                                if let currentItem {
+                                    let newItem = TodoItem(todoItem: currentItem)
+                                    prop.onItemDone(newItem)
+                                }
+                            }, label: {
+                                Image(.iconPropOn)
+                            })
+                            .tint(Color.customGreen)
+                        }
                     }
                 }
-            }
-            .navigationTitle("Мои дела")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem {
-                    NavigationLink() {
-                        
-                    } label: {
-                        Image(systemName: "calendar.circle.fill")
+                .navigationTitle("Мои дела")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem {
+                        NavigationLink() {
+//                            CalendarViewRepresentable(store: store)
+                        } label: {
+                            Image(systemName: "calendar.circle.fill")
+                        }
                     }
                 }
+                Button {
+                    isPresented = true
+                } label: {
+                    Image(.iconPlusButton)
+                }
             }
-            Button("Add") {
-                isPresented = true
-            }
-        }.sheet(isPresented: $isPresented, content: {
+        }
+        .sheet(isPresented: $isPresented, content: {
             DetailView()
         })
     }
