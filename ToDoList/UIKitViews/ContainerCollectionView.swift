@@ -13,10 +13,10 @@ protocol TabelCellDelegate: AnyObject {
 }
 
 final class ContainerCollectionView: UIView {
-    
+
     weak var delegate: TabelCellDelegate?
     var daysStore: [String] = [String]()
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -28,22 +28,22 @@ final class ContainerCollectionView: UIView {
         collecitonView.dataSource = self
         return collecitonView
     }()
-    
+
     init(daysStore: [String]) {
         self.daysStore = daysStore
         super.init(frame: .zero)
         style()
         layout()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func style() {
         backgroundColor = .systemGray
     }
-    
+
     private func layout() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
@@ -51,10 +51,10 @@ final class ContainerCollectionView: UIView {
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     func scrollToActualItem(at ind: Int) {
         let indexPath = IndexPath(item: ind, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -74,7 +74,7 @@ extension ContainerCollectionView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize { CGSize(width: 60, height: 60) }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -86,7 +86,7 @@ extension ContainerCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return daysStore.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(CalendarCellView.self)", for: indexPath) as? CalendarCellView else {
             return UICollectionViewCell()

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct PaletteView: View {
     @Binding var currentColor: Color
-    
+
     @State private var hue: Double = 0
     @State private var brightness: Double = 1.0
     @State private var paletteSize: CGSize = .zero
-    
+
     var body: some View {
         VStack {
             pallet
@@ -27,7 +27,7 @@ struct PaletteView: View {
         }
         .padding()
     }
-    
+
     private var pallet: some View {
         Rectangle()
             .fill(LinearGradient(colors: [
@@ -43,7 +43,7 @@ struct PaletteView: View {
             ], startPoint: .leading, endPoint: .trailing))
             .frame(height: 150)
             .cornerRadius(8.0)
-            .gesture (
+            .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { value in
                         hue = min(
@@ -54,18 +54,18 @@ struct PaletteView: View {
                     }
             )
         }
-    
+
     private var slider: some View {
         Slider(value: $brightness, in: 0...1)
             .onChange(of: brightness) {
                 currentColor = getColor(brightness)
             }
     }
-    
+
     private func getColor(with hue: Double) -> Color {
         Color(hue: hue, saturation: 1, brightness: brightness)
     }
-    
+
     private func getColor(_ brightness: Double) -> Color {
         Color(hue: hue, saturation: 1, brightness: brightness)
     }

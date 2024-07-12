@@ -6,22 +6,23 @@
 //
 
 import SwiftUI
+import FileCacheUtil
 
 struct TodoItemsView: View {
     @State var isPresented: Bool = false
     @State var currentItem: TodoItem?
     @EnvironmentObject var store: Store<AppState>
-    
+
     struct Props {
-        //props
+        // props
         let items: [TodoItem]
-        
-        //dispatch
+
+        // dispatch
         let onItemAdded: (TodoItem) -> Void
         let onItemRemove: (TodoItem) -> Void
         let onItemDone: (TodoItem) -> Void
     }
-    
+
     private func map(state: ItemsState) -> Props {
         Props(items: state.items, onItemAdded: { item in
             store.dispathc(action: AddItemAction(item: item))
@@ -31,11 +32,11 @@ struct TodoItemsView: View {
             store.dispathc(action: DoneItemAction(item: item))
         })
     }
-    
+
     var body: some View {
         let prop = map(state: store.state.itemsState)
-        
-        NavigationStack{
+
+        NavigationStack {
             ZStack(alignment: .bottom) {
                 VStack {
                     List(prop.items, id: \.id) { item in
@@ -53,16 +54,16 @@ struct TodoItemsView: View {
                                 Image(systemName: "trash")
                             }
                             .tint(Color.customRed)
-                            
+
                             Button(action: {
-                                
+
                             }, label: {
                                 Image(systemName: "info.circle.fill")
                             })
                             .tint(Color.customGray)
                         }
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            
+
                             Button(action: {
                                 if let currentItem {
                                     let newItem = TodoItem(todoItem: currentItem)
@@ -79,7 +80,7 @@ struct TodoItemsView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem {
-                        NavigationLink() {
+                        NavigationLink {
 //                            CalendarViewRepresentable(store: store)
                         } label: {
                             Image(systemName: "calendar.circle.fill")

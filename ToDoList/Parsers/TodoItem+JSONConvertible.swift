@@ -6,26 +6,27 @@
 //
 
 import Foundation
+import FileCacheUtil
 
-//MARK: - Parse JSON
+// MARK: - Parse JSON
 extension TodoItem: JSONConvertible {
-    //MARK: - From Json to TodoItem
+    // MARK: - From Json to TodoItem
     static func parse(json: Any) -> TodoItem? {
-        guard let jsonAsString = json as? String else { return nil } //Можно ли сократить ?
+        guard let jsonAsString = json as? String else { return nil } // Можно ли сократить ?
         let jsonData = Data(jsonAsString.utf8)
-        
+
         guard let jsonAsDictionary = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
               let id = jsonAsDictionary["id"] as? String,
               let text = jsonAsDictionary["text"] as? String,
               let isDone = jsonAsDictionary["isFinished"] as? Bool,
               let сreationTimeInterval = jsonAsDictionary["сreationDate"] as? TimeInterval
         else { return nil }
-        
+
         let createdAt = Date(timeIntervalSince1970: сreationTimeInterval)
         let importance = (jsonAsDictionary["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .routine
         let deadline = (jsonAsDictionary["deadline"] as? TimeInterval).flatMap(Date.init(timeIntervalSince1970:))
         let changedAt = (jsonAsDictionary["modifiedDate"] as? TimeInterval).flatMap(Date.init(timeIntervalSince1970:))
-        
+
         return TodoItem(
             id: id,
             text: text,
@@ -36,8 +37,8 @@ extension TodoItem: JSONConvertible {
             changedAt: changedAt
         )
     }
-    
-    //MARK: - From TodoItme to Json
+
+    // MARK: - From TodoItme to Json
     var json: Any {
         var dict = [String: Any]()
         dict["id"] = id

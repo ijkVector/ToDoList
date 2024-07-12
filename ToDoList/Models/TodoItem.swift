@@ -13,9 +13,9 @@ enum Importance: String {
     case important
 }
 
-//MARK: - TodoItem Defenition
-struct TodoItem: Equatable {
-    
+// MARK: - TodoItem Defenition
+struct TodoItem: Equatable, Identifiable {
+
     let id: String
     let text: String
     let importance: Importance
@@ -24,7 +24,7 @@ struct TodoItem: Equatable {
     let createdAt: Date
     let changedAt: Date?
     let hexColor: String?
-    
+
     init(
         id: String = UUID().uuidString,
         text: String,
@@ -44,7 +44,7 @@ struct TodoItem: Equatable {
         self.changedAt = changedAt
         self.hexColor = hexColor
     }
-    
+
     init(todoItem: TodoItem) {
         self.init(
             id: todoItem.id,
