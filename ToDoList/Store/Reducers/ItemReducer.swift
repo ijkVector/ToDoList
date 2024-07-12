@@ -23,7 +23,8 @@ func itemReducer(_ state: ItemsState, _ action: Action) -> ItemsState {
         do {
             try fileCache.save(to: FileNames.jsonName)
         } catch {
-            DDLogInfo(error.localizedDescription)
+            let message = DDLogMessageFormat(stringLiteral: error.localizedDescription)
+            DDLogError(message)
         }
         DDLogInfo("Append todo with id: \(action.item.id)")
     case let action as RemoveItemAction:
