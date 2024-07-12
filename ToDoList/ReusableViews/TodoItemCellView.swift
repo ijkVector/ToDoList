@@ -10,7 +10,7 @@ import SwiftUI
 struct TodoItemCellView: View {
     var todoItem: TodoItem
     var completeToogle: () -> Void
-    
+
     var body: some View {
         let isImportant = todoItem.importance == .important
         let isUnimportant = todoItem.importance == .unimportant
@@ -23,7 +23,7 @@ struct TodoItemCellView: View {
                     Image(.iconArrowDown)
                 }
             }
-            
+
             VStack(alignment: .leading) {
                 Text(todoItem.text)
                     .strikethrough(todoItem.isDone)
@@ -36,23 +36,23 @@ struct TodoItemCellView: View {
                     .foregroundStyle(.labelSecondary)
                 }
             }
-            
+
             Spacer()
-            
+
             Image(.iconArrowRight)
             if let hexColor = todoItem.hexColor {
                 Rectangle()
                     .fill(Color(hex: hexColor))
                     .frame(width: 5)
             }
-            
+
         }
         .padding()
     }
-    
+
     private var completeButton: some View {
         let isImportant = todoItem.importance == .important
-        
+
         return Button(action: completeToogle) {
             if !todoItem.isDone {
                 Image(isImportant ? .iconPropHighPriority : .iconPropOff)

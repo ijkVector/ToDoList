@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     @EnvironmentObject var store: Store<AppState>
-    
+
     @State private var text: String = ""
     @State private var importance: Importance = .routine
     @State private var isDeadlineAvailable: Bool = false
@@ -20,18 +20,18 @@ struct DetailView: View {
     @State private var changedAt: Date?
     @State private var isColorAvailable: Bool = false
     @State private var hexColor: Color = Color.white
-    
+
     @Environment(\.dismiss) private var dismiss
-    
+
     struct Props {
-        //props
+        // props
         let items: [TodoItem]
-        
-        //dispatch
+
+        // dispatch
         let onItemAdded: (TodoItem) -> Void
         let onItemRemove: (TodoItem) -> Void
     }
-    
+
     private func map(state: ItemsState) -> Props {
         Props(items: state.items, onItemAdded: { item in
             store.dispathc(action: AddItemAction(item: item))
@@ -39,10 +39,10 @@ struct DetailView: View {
             store.dispathc(action: RemoveItemAction(item: item))
         })
     }
-    
+
     var body: some View {
         let prop = map(state: store.state.itemsState)
-        
+
         NavigationStack {
             ScrollView {
                 VStack {
@@ -66,7 +66,7 @@ struct DetailView: View {
                             RoundedRectangle(cornerRadius: 16)
                                 .foregroundStyle(Color.customWhite)
                         )
-                    
+
                     Button(action: {
                         prop.onItemRemove(TodoItem(text: text, importance: importance))
                     }, label: {
@@ -74,7 +74,7 @@ struct DetailView: View {
                             .foregroundStyle(text.isEmpty ? Color.customGray : Color.customRed)
                             .frame(height: 56)
                             .frame(maxWidth: .infinity)
-                        
+
                     })
                     .background(
                         RoundedRectangle(cornerRadius: 16)
@@ -95,7 +95,7 @@ struct DetailView: View {
                         dismiss()
                     }
                 }
-                
+
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Сохранить") {
                         prop.onItemAdded(TodoItem(text: text, importance: .routine, hexColor: hexColor.asHexString))
@@ -106,7 +106,7 @@ struct DetailView: View {
             }
         }
     }
-    
+
     private var textFieldView: some View {
         TextField("Что надо сделать ?", text: $text, axis: .vertical)
             .lineLimit(5...100)
@@ -117,7 +117,7 @@ struct DetailView: View {
                     .foregroundStyle(Color.customWhite)
             )
     }
-    
+
     private var featuresView: some View {
         VStack(spacing: 0) {
             importanceView
@@ -135,7 +135,7 @@ struct DetailView: View {
             }
         }
     }
-    
+
     private var importanceView: some View {
         HStack {
             Text("Важность")
@@ -147,7 +147,7 @@ struct DetailView: View {
         .frame(height: 56)
         .background(Color.customWhite)
     }
-    
+
     private var colorView: some View {
         HStack {
             VStack(spacing: 1) {
@@ -167,7 +167,7 @@ struct DetailView: View {
         .frame(height: 56)
         .background(Color.customWhite)
     }
-    
+
     private var deadlineView: some View {
 //        HStack {
 //            VStack(spacing: 1) {
@@ -190,7 +190,7 @@ struct DetailView: View {
 //        }
 //        .frame(height: 90)
 //        .background(Color.customWhite)
-        
+
         Toggle(isOn: $isDeadlineAvailable.animation()) {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Сделать до")

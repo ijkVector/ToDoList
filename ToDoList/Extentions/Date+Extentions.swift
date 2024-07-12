@@ -11,7 +11,7 @@ extension Date {
     static var nextDay: Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: .now)!
     }
-    
+
     var deadlineAsString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMMM yyyy"

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImportanceView: View {
     @Binding var importance: Importance
-    
+
     var body: some View {
         Picker("", selection: $importance) {
             Image(.iconArrowDown).tag(Importance.unimportant)

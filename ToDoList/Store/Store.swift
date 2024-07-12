@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import FileCacheUtil
 
 typealias Reducer<State: ReduxState> = (_ state: State, _ action: Action) -> State
 
-//MARK: - States
+// MARK: - States
 protocol ReduxState { }
 
 struct AppState: ReduxState {
@@ -20,7 +21,7 @@ struct ItemsState: ReduxState {
     var items: [TodoItem] = [
         TodoItem(text: "Задача1", importance: .important),
         TodoItem(text: "Задача2", importance: .routine),
-        TodoItem(text: "Задача3", importance: .unimportant),
+        TodoItem(text: "Задача3", importance: .unimportant)
     ]
 }
 
@@ -29,7 +30,7 @@ struct DetailViewColorState: ReduxState {
     var isColorPickerShow: Bool = false
 }
 
-//MARK: - Actions
+// MARK: - Actions
 protocol Action { }
 
 struct AddItemAction: Action {
@@ -49,19 +50,19 @@ struct DoneItemAction: Action {
 }
 
 struct DetailViewColorAction: Action {
-    
+
 }
 
 final class Store<StoreState: ReduxState>: ObservableObject {
-    
+
     private let reducer: Reducer<StoreState>
     @Published private(set) var state: StoreState
-    
+
     init(reducer: @escaping Reducer<StoreState>, state: StoreState) {
         self.reducer = reducer
         self.state = state
     }
-    
+
     func dispathc(action: Action) {
         state = reducer(state, action)
     }

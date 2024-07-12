@@ -9,12 +9,12 @@ import UIKit
 
 final class CalendarCellView: UICollectionViewCell {
     private let label = UILabel()
-    
+
     func configure(text: String) {
         style(text: text)
         layout()
     }
-    
+
     private func style(text: String) {
         layer.cornerRadius = 10
 //        layer.backgroundColor = UIColor.systemGray.cgColor
@@ -23,19 +23,19 @@ final class CalendarCellView: UICollectionViewCell {
         label.numberOfLines = 3
         label.text = text
     }
-    
+
     private func layout() {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        
+
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     override var isSelected: Bool {
         didSet {
             backgroundColor = isSelected ? .gray.withAlphaComponent(0.2) : .clear
