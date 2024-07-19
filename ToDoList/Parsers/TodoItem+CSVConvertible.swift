@@ -8,6 +8,14 @@
 import Foundation
 import FileCacheUtil
 
+// MARK: - Constants
+private extension TodoItem {
+    enum Constants {
+        static let fieldsOfItem = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
+        static let numOfItemFields = 7
+    }
+}
+
 // MARK: - Parse CSV
 extension TodoItem: CSVConvertible {
     static func parse(csv: Any, with separator: String = ",") -> TodoItem? {
@@ -19,13 +27,11 @@ extension TodoItem: CSVConvertible {
         let parsedCSV = Dictionary(uniqueKeysWithValues: zip(Constants.fieldsOfItem, csvArray))
 
         guard let id = parsedCSV["id"],
-              var text = parsedCSV["text"],
+              let text = parsedCSV["text"],
               let isDone = Bool(parsedCSV["isFinished", default: ""]),
               let сreationTimeInterval = TimeInterval(parsedCSV["сreationDate", default: ""])
         else { return nil }
 
-        text.removeFirst()
-        text.removeLast()
         let createdAt = Date(timeIntervalSince1970: сreationTimeInterval)
         let importance = (parsedCSV["importance"]).flatMap(Importance.init(rawValue:)) ?? .routine
         let deadline = (TimeInterval(parsedCSV["deadline", default: ""])).flatMap(Date.init(timeIntervalSince1970:))
@@ -33,7 +39,7 @@ extension TodoItem: CSVConvertible {
 
         return TodoItem(
             id: id,
-            text: text,
+            text: TodoItem.removeExtraQuotes(text),
             importance: importance,
             deadline: deadline,
             isDone: isDone,
@@ -49,7 +55,7 @@ extension TodoItem: CSVConvertible {
     func csv(with separator: String = ",") -> String {
         [
             id,
-            "\"\(text)\"",
+            TodoItem.addExtraQuotes(text),
             importance == .routine ? "" : importance.rawValue,
             deadline?.timeIntervalSince1970.description ?? "",
             "\(isDone)",
@@ -59,13 +65,8 @@ extension TodoItem: CSVConvertible {
     }
 }
 
-// MARK: - Private Section
+// MARK: - Private Parse Section
 private extension TodoItem {
-
-    enum Constants {
-        static let fieldsOfItem = ["id", "text", "importance", "deadline", "isFinished", "сreationDate", "modifiedDate"]
-        static let numOfItemFields = 7
-    }
 
     static func split(csv: String, with pattern: String) -> [String]? {
         guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
@@ -90,5 +91,16 @@ private extension TodoItem {
         }
 
         return partition
+    }
+
+    static func removeExtraQuotes(_ text: String) -> String {
+        var text = text
+        text.removeFirst()
+        text.removeLast()
+        return text
+    }
+
+    static func addExtraQuotes(_ text: String) -> String {
+        "\"\(text)\""
     }
 }
