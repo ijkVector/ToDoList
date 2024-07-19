@@ -7,49 +7,43 @@
 
 import SwiftUI
 
+private enum LayoutConstants {
+
+}
+
 struct TodoItemCellView: View {
     var todoItem: TodoItem
     var completeToogle: () -> Void
 
     var body: some View {
-        let isImportant = todoItem.importance == .important
-        let isUnimportant = todoItem.importance == .unimportant
         HStack {
             completeButton
-            if !todoItem.isDone {
-                if isImportant {
+            HStack {
+                if todoItem.importance == .important
+                    && !todoItem.isDone {
                     Image(.iconExclamationMarks)
-                } else if isUnimportant {
-                    Image(.iconArrowDown)
                 }
-            }
-
-            VStack(alignment: .leading) {
-                Text(todoItem.text)
-                    .strikethrough(todoItem.isDone)
-                    .lineLimit(3)
-                if let deadline = todoItem.deadline {
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text(deadline, style: .date)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(todoItem.text)
+                        .lineLimit(3)
+                    if let deadline = todoItem.deadline {
+                        HStack(spacing: 2) {
+                            Image(systemName: "calendar")
+                            Text(deadline, style: .date)
+                        }
                     }
-                    .foregroundStyle(.labelSecondary)
                 }
             }
-
             Spacer()
-
             Image(.iconArrowRight)
             if let hexColor = todoItem.hexColor {
                 Rectangle()
                     .fill(Color(hex: hexColor))
-                    .frame(width: 5)
+                    .frame(width: 5, height: 50)
             }
 
         }
-        .padding()
     }
-
     private var completeButton: some View {
         let isImportant = todoItem.importance == .important
 
@@ -64,6 +58,6 @@ struct TodoItemCellView: View {
 }
 
 #Preview {
-    let todoItem = TodoItem(text: "Hello", importance: .important, deadline: .now, hexColor: "#00FE44")
+    let todoItem = TodoItem(text: "Task1", importance: .important, deadline: .now, hexColor: "#00FE44")
     return TodoItemCellView(todoItem: todoItem) { }
 }

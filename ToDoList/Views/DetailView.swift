@@ -98,7 +98,7 @@ struct DetailView: View {
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Сохранить") {
-                        prop.onItemAdded(TodoItem(text: text, importance: .routine, hexColor: hexColor.asHexString))
+                        prop.onItemAdded(TodoItem(text: text, importance: .routine, deadline: deadline, hexColor: hexColor.asHexString))
                         dismiss()
                     }
                     .disabled(text.isEmpty)
