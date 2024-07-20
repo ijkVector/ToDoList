@@ -30,7 +30,7 @@ final class FileCacheTests: XCTestCase {
     override func setUp() {
         todoItem = TodoItem(
             text: "task1",
-            importance: .unimportant,
+            importance: .low,
             deadline: Date(timeIntervalSince1970: 101),
             isDone: true,
             createdAt: Date(timeIntervalSince1970: 99),
@@ -39,7 +39,7 @@ final class FileCacheTests: XCTestCase {
 
         todoItem1 = TodoItem(
             text: "task1",
-            importance: .routine,
+            importance: .basic,
             deadline: Date(timeIntervalSince1970: 101),
             isDone: true,
             createdAt: Date(timeIntervalSince1970: 99),
@@ -48,7 +48,7 @@ final class FileCacheTests: XCTestCase {
 
         todoItem2 =  TodoItem(
             text: "task1",
-            importance: .routine,
+            importance: .basic,
             isDone: true,
             createdAt: Date(timeIntervalSince1970: 100)
         )

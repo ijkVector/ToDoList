@@ -20,8 +20,8 @@ struct AppState: ReduxState {
 struct ItemsState: ReduxState {
     var items: [TodoItem] = [
         TodoItem(text: "Задача1", importance: .important),
-        TodoItem(text: "Задача2", importance: .routine),
-        TodoItem(text: "Задача3", importance: .unimportant)
+        TodoItem(text: "Задача2", importance: .basic),
+        TodoItem(text: "Задача3", importance: .low)
     ]
 }
 

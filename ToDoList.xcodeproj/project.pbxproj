@@ -20,6 +20,12 @@
 		6B15D9B22C4001D400660A6C /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 6B15D9B12C4001D400660A6C /* CocoaLumberjack */; };
 		6B15D9B42C4001D800660A6C /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6B15D9B32C4001D800660A6C /* CocoaLumberjackSwift */; };
 		6B15D9B62C4001DE00660A6C /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = 6B15D9B52C4001DE00660A6C /* CocoaLumberjackSwiftLogBackend */; };
+		6B319AC22C4A7BD60069E9FB /* NetworkingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B319AC12C4A7BD60069E9FB /* NetworkingServiceProtocol.swift */; };
+		6B319AC42C4A82840069E9FB /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B319AC32C4A82840069E9FB /* NetworkingService.swift */; };
+		6B319AC72C4A82E40069E9FB /* NetworkTodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B319AC62C4A82E40069E9FB /* NetworkTodoItem.swift */; };
+		6B319ACA2C4A87FF0069E9FB /* NetworkTodoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B319AC92C4A87FF0069E9FB /* NetworkTodoListModel.swift */; };
+		6B319ACC2C4A88DE0069E9FB /* NeworkTodoElementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B319ACB2C4A88DE0069E9FB /* NeworkTodoElementModel.swift */; };
+		6B319ACE2C4A89570069E9FB /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B319ACD2C4A89570069E9FB /* NetworkConstants.swift */; };
 		6B62833B2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62833A2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift */; };
 		6B62833D2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B62833C2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift */; };
 		6B6FEE832C41683900FDFF7D /* FileCacheUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 6B6FEE822C41683900FDFF7D /* FileCacheUtil */; };
@@ -65,6 +71,12 @@
 		6B15A2FF2C38FB910002206A /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
 		6B15A3012C38FD230002206A /* MainCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarViewController.swift; sourceTree = "<group>"; };
 		6B15A3032C38FD960002206A /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		6B319AC12C4A7BD60069E9FB /* NetworkingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingServiceProtocol.swift; sourceTree = "<group>"; };
+		6B319AC32C4A82840069E9FB /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		6B319AC62C4A82E40069E9FB /* NetworkTodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTodoItem.swift; sourceTree = "<group>"; };
+		6B319AC92C4A87FF0069E9FB /* NetworkTodoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTodoListModel.swift; sourceTree = "<group>"; };
+		6B319ACB2C4A88DE0069E9FB /* NeworkTodoElementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeworkTodoElementModel.swift; sourceTree = "<group>"; };
+		6B319ACD2C4A89570069E9FB /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		6B62833A2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+JSONConvertible.swift"; sourceTree = "<group>"; };
 		6B62833C2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CSVConvertible.swift"; sourceTree = "<group>"; };
 		6B6FEE842C41ACFC00FDFF7D /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
@@ -152,6 +164,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6B319AC02C4A7B740069E9FB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6B319AC82C4A831A0069E9FB /* Constants */,
+				6B319AC52C4A82920069E9FB /* Models */,
+				6B319AC12C4A7BD60069E9FB /* NetworkingServiceProtocol.swift */,
+				6B319AC32C4A82840069E9FB /* NetworkingService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6B319AC52C4A82920069E9FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6B319AC62C4A82E40069E9FB /* NetworkTodoItem.swift */,
+				6B319AC92C4A87FF0069E9FB /* NetworkTodoListModel.swift */,
+				6B319ACB2C4A88DE0069E9FB /* NeworkTodoElementModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6B319AC82C4A831A0069E9FB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				6B319ACD2C4A89570069E9FB /* NetworkConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		6B6283392C2E8C8F000F79B0 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +263,7 @@
 		6B9E1A472C20423E00D2D690 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				6B319AC02C4A7B740069E9FB /* Network */,
 				6B15A2FA2C38EC720002206A /* UIKitViews */,
 				6BA1E9C22C239FD90020FD3C /* Models */,
 				6B7969C82C3749EE00A624D1 /* Store */,
@@ -416,10 +458,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B319ACE2C4A89570069E9FB /* NetworkConstants.swift in Sources */,
+				6B319AC42C4A82840069E9FB /* NetworkingService.swift in Sources */,
 				6B15A3022C38FD230002206A /* MainCalendarViewController.swift in Sources */,
 				6B62833B2C2E8CCB000F79B0 /* TodoItem+JSONConvertible.swift in Sources */,
 				6B7969D22C374DBA00A624D1 /* ItemReducer.swift in Sources */,
 				6B62833D2C2E8CFC000F79B0 /* TodoItem+CSVConvertible.swift in Sources */,
+				6B319AC72C4A82E40069E9FB /* NetworkTodoItem.swift in Sources */,
 				6B0269EF2C37B1CA009738BB /* DeadlineCalendarView.swift in Sources */,
 				6B6FEE852C41ACFC00FDFF7D /* URLSession+Extension.swift in Sources */,
 				6BA1E9C62C23A1570020FD3C /* TodoItem.swift in Sources */,
@@ -429,9 +474,12 @@
 				6B15A3042C38FD960002206A /* CalendarModel.swift in Sources */,
 				6B7969D02C374D7100A624D1 /* AppReducer.swift in Sources */,
 				6B0269EB2C378A65009738BB /* PaletteView.swift in Sources */,
+				6B319AC22C4A7BD60069E9FB /* NetworkingServiceProtocol.swift in Sources */,
 				6B0269F32C382D2B009738BB /* TodoItemCellView.swift in Sources */,
 				6B9E1A492C20423E00D2D690 /* ToDoListApp.swift in Sources */,
+				6B319ACC2C4A88DE0069E9FB /* NeworkTodoElementModel.swift in Sources */,
 				6B9D61162C2FBF1A00C9F32B /* DateFormatter+Extentions.swift in Sources */,
+				6B319ACA2C4A87FF0069E9FB /* NetworkTodoListModel.swift in Sources */,
 				6B0269E92C37815C009738BB /* ImportanceView.swift in Sources */,
 				6B9D61142C2FBE7D00C9F32B /* Date+Extentions.swift in Sources */,
 				6B15A2FC2C38F4580002206A /* CalendarCellView.swift in Sources */,

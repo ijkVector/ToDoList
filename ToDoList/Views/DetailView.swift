@@ -11,7 +11,7 @@ struct DetailView: View {
     @EnvironmentObject var store: Store<AppState>
 
     @State private var text: String = ""
-    @State private var importance: Importance = .routine
+    @State private var importance: Importance = .basic
     @State private var isDeadlineAvailable: Bool = false
     @State private var isCalendarAvailable: Bool = false
     @State private var deadline: Date = Date.nextDay
@@ -98,7 +98,7 @@ struct DetailView: View {
 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Сохранить") {
-                        prop.onItemAdded(TodoItem(text: text, importance: .routine, deadline: deadline, hexColor: hexColor.asHexString))
+                        prop.onItemAdded(TodoItem(text: text, importance: .basic, deadline: deadline, hexColor: hexColor.asHexString))
                         dismiss()
                     }
                     .disabled(text.isEmpty)
