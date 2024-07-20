@@ -33,7 +33,7 @@ extension TodoItem: CSVConvertible {
         else { return nil }
 
         let createdAt = Date(timeIntervalSince1970: сreationTimeInterval)
-        let importance = (parsedCSV["importance"]).flatMap(Importance.init(rawValue:)) ?? .routine
+        let importance = (parsedCSV["importance"]).flatMap(Importance.init(rawValue:)) ?? .basic
         let deadline = (TimeInterval(parsedCSV["deadline", default: ""])).flatMap(Date.init(timeIntervalSince1970:))
         let changedAt = (TimeInterval(parsedCSV["modifiedDate", default: ""])).flatMap(Date.init(timeIntervalSince1970:))
 
@@ -56,7 +56,7 @@ extension TodoItem: CSVConvertible {
         [
             id,
             TodoItem.addExtraQuotes(text),
-            importance == .routine ? "" : importance.rawValue,
+            importance == .basic ? "" : importance.rawValue,
             deadline?.timeIntervalSince1970.description ?? "",
             "\(isDone)",
             "\(createdAt.timeIntervalSince1970)",

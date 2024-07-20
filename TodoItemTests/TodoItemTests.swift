@@ -20,7 +20,7 @@ final class TodoItemTests: XCTestCase {
         todoItem = TodoItem(
             id: "todoItem1",
             text: "task1",
-            importance: .routine,
+            importance: .basic,
             isDone: true,
             createdAt: Date(timeIntervalSince1970: 100),
             changedAt: Date(timeIntervalSince1970: 101)
@@ -74,7 +74,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "task1")
-        XCTAssertEqual(todoItem.importance, .routine)
+        XCTAssertEqual(todoItem.importance, .basic)
         XCTAssertEqual(todoItem.deadline, nil)
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -119,7 +119,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "task1")
-        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.importance, .low)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 101))
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -143,7 +143,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "task1")
-        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.importance, .low)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -160,7 +160,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "task1")
-        XCTAssertEqual(todoItem.importance, .routine)
+        XCTAssertEqual(todoItem.importance, .basic)
         XCTAssertEqual(todoItem.deadline, nil)
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -188,7 +188,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "task1")
-        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.importance, .low)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 101))
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -202,7 +202,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "task1")
-        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.importance, .low)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -216,7 +216,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "Hello, World,")
-        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.importance, .low)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -230,7 +230,7 @@ final class TodoItemTests: XCTestCase {
         }
         XCTAssertEqual(todoItem.id, "todoItem1")
         XCTAssertEqual(todoItem.text, "Hello; World,")
-        XCTAssertEqual(todoItem.importance, .unimportant)
+        XCTAssertEqual(todoItem.importance, .low)
         XCTAssertEqual(todoItem.deadline!, Date(timeIntervalSince1970: 102))
         XCTAssertEqual(todoItem.isDone, true)
         XCTAssertEqual(todoItem.createdAt, Date(timeIntervalSince1970: 100))
@@ -243,7 +243,7 @@ final class TodoItemTests: XCTestCase {
         todoItem = TodoItem(
             id: "todoItem1",
             text: "task1",
-            importance: .routine,
+            importance: .basic,
             isDone: true,
             createdAt: Date(timeIntervalSince1970: 100)
         )

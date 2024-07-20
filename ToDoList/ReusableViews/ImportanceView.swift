@@ -12,11 +12,11 @@ struct ImportanceView: View {
 
     var body: some View {
         Picker("", selection: $importance) {
-            Image(.iconArrowDown).tag(Importance.unimportant)
+            Image(.iconArrowDown).tag(Importance.low)
             Text("нет")
                 .font(.system(size: 15, weight: .regular))
                 .multilineTextAlignment(.center)
-                .tag(Importance.routine)
+                .tag(Importance.basic)
             Image(.iconExclamationMarks).tag(Importance.important)
         }
         .pickerStyle(.segmented)
@@ -25,5 +25,5 @@ struct ImportanceView: View {
 }
 
 #Preview {
-    ImportanceView(importance: Binding(get: { .routine }, set: { _ in }))
+    ImportanceView(importance: Binding(get: { .basic }, set: { _ in }))
 }

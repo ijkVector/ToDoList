@@ -9,7 +9,7 @@ import UIKit
 
 final class MainCalendarViewController: UIViewController {
     private var store: Store<AppState>
-    private var sections: [(String, [TodoItem])] = [("28 июня", [TodoItem(text: "Some text", importance: .routine)])]
+    private var sections: [(String, [TodoItem])] = [("28 июня", [TodoItem(text: "Some text", importance: .basic)])]
 
     struct Props {
         var items: [TodoItem]

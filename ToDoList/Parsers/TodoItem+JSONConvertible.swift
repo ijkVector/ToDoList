@@ -23,7 +23,7 @@ extension TodoItem: JSONConvertible {
         else { return nil }
 
         let createdAt = Date(timeIntervalSince1970: сreationTimeInterval)
-        let importance = (jsonAsDictionary["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .routine
+        let importance = (jsonAsDictionary["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .basic
         let deadline = (jsonAsDictionary["deadline"] as? TimeInterval).flatMap(Date.init(timeIntervalSince1970:))
         let changedAt = (jsonAsDictionary["modifiedDate"] as? TimeInterval).flatMap(Date.init(timeIntervalSince1970:))
 
@@ -43,7 +43,7 @@ extension TodoItem: JSONConvertible {
         var dict = [String: Any]()
         dict["id"] = id
         dict["text"] = text
-        dict["importance"] = importance == .routine ? nil : importance.rawValue
+        dict["importance"] = importance == .basic ? nil : importance.rawValue
         dict["deadline"] = deadline == nil ? nil : deadline?.timeIntervalSince1970
         dict["isFinished"] = isDone
         dict["сreationDate"] = createdAt.timeIntervalSince1970
